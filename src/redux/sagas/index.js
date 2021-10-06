@@ -2,10 +2,12 @@ import { fork, all, takeLatest } from 'redux-saga/effects';
 import types, { basicAsyncActionTypes } from 'redux/actionTypes';
 import { toCamelStyle } from 'utils/format';
 
-import * as authSagas from './authSaga';
+import * as authSagas from './authSagas';
+import * as userSagas from './userSagas';
 
 const allSaga = {
   ...authSagas,
+  ...userSagas,
 };
 
 const getMatchedSaga = actionType => {

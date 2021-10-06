@@ -1,6 +1,6 @@
 import types from 'redux/actionTypes';
 import { loginResult, logoutResult } from 'redux/apis/auth';
-import fetchAPIResult from 'utils/sagaUtils';
+import fetchAPIResult from 'redux/sagaUtils';
 
 export function* loginSaga({ payload }) {
   return yield fetchAPIResult({

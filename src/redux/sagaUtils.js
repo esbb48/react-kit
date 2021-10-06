@@ -5,14 +5,14 @@ const okFetch = (payload, action, text, reqPayload) => {
     type: `${action}_SUCCESS`,
     payload,
     reqPayload,
-    globalMessage: {
+    snackbar: {
       status: 'success',
       text,
     },
   };
 
   if (text.length === 0) {
-    delete successPayload.globalMessage;
+    delete successPayload.snackbar;
   }
 
   return successPayload;
@@ -21,7 +21,7 @@ const okFetch = (payload, action, text, reqPayload) => {
 const errFetch = ({ status, data }, action) => ({
   type: `${action}_ERROR`,
   payload: { code: status, data: data.data },
-  globalMessage: {
+  snackbar: {
     status: 'error',
     text: data?.data?.message ?? '非預期錯誤，請聯繫系統管理員',
   },

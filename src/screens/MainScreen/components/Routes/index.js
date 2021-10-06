@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import PublicRoute from './PublicRoute';
-import PrivateRoute from './PrivateRoute';
+import Layout from 'components/Layout';
 import ErrorScreen from 'screens/ErrorScreen';
 import HomeScreen from 'screens/HomeScreen';
 import LoginScreen from 'screens/LoginScreen';
-
+import PublicRoute from './PublicRoute';
+import PrivateRoute from './PrivateRoute';
 const PUBLIC_ROUTES = [
   {
     path: '/login',
@@ -20,8 +20,6 @@ const PRIVATE_ROUTES = [
   },
 ];
 
-const LayoutWrapper = ({ children }) => children;
-
 const renderRoutes = (isAuth, routes, RouteComponent) =>
   routes.map(({ path, component }) => (
     <RouteComponent
@@ -36,13 +34,13 @@ const renderRoutes = (isAuth, routes, RouteComponent) =>
 const Routes = ({ isAuth }) => {
   return (
     <Router>
-      <LayoutWrapper>
+      <Layout>
         <Switch>
           {renderRoutes(isAuth, PUBLIC_ROUTES, PublicRoute)}
           {renderRoutes(isAuth, PRIVATE_ROUTES, PrivateRoute)}
           <Route exact component={ErrorScreen} />
         </Switch>
-      </LayoutWrapper>
+      </Layout>
     </Router>
   );
 };

@@ -1,4 +1,6 @@
 import React from 'react';
+import { GENDER } from 'constants/text.config';
+import { toDateText } from 'utils/dateUtils';
 
 class HomeScreen extends React.PureComponent {
   componentDidMount() {
@@ -12,11 +14,13 @@ class HomeScreen extends React.PureComponent {
     return (
       <div>
         Hi {userName}，<button onClick={handleLogout}>登出</button>
-        <div>使用者總共 {total} 筆數</div>
+        <div>
+          使用者總共 {total} 筆數，時間：{toDateText(1633502050540)}
+        </div>
         <div>
           {rows.map(row => (
             <div key={row.id}>
-              {row.id},{row.name}
+              {row.id},{row.name},{GENDER[row.gender]}
               <button onClick={handleDeleteUser(row.id)}>刪除</button>
             </div>
           ))}

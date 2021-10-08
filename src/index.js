@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import MainScreen from 'screens/MainScreen';
 import reduxStore from 'redux/configureStore';
 import reportWebVitals from './reportWebVitals';
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={reduxStore.store}>
-      <PersistGate loading={null} persistor={reduxStore.persistor}>
-        <MainScreen />
-      </PersistGate>
+      <BrowserRouter>
+        <PersistGate loading={null} persistor={reduxStore.persistor}>
+          <MainScreen />
+        </PersistGate>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,48 +1,35 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Layout from 'components/Layout';
+import { useRoutes, Navigate } from 'react-router-dom';
+// import Layout from 'components/Layout';
 import ErrorScreen from 'screens/ErrorScreen';
 import HomeScreen from 'screens/HomeScreen';
 import LoginScreen from 'screens/LoginScreen';
-import PublicRoute from './PublicRoute';
-import PrivateRoute from './PrivateRoute';
-const PUBLIC_ROUTES = [
+import PublicLayout from '../PublicLayout';
+import PrivateLayout from '../PrivateLayout';
+const getRoutes = isAuth => [
   {
-    path: '/login',
-    component: LoginScreen,
-    requireAuth: false,
+    path: 'app',
+    element: <PrivateLayout isAuth={isAuth} />,
+    children: [
+      { path: 'user', element: <HomeScreen /> },
+      { path: '*', element: <Navigate to='/404' /> },
+    ],
   },
-];
-const PRIVATE_ROUTES = [
   {
     path: '/',
-    component: HomeScreen,
-    public: true,
+    element: <PublicLayout isAuth={isAuth} />,
+    children: [
+      { path: 'login', element: <LoginScreen /> },
+      { path: '404', element: <ErrorScreen /> },
+      { path: '/', element: <Navigate to='/login' /> },
+      { path: '*', element: <Navigate to='/404' /> },
+    ],
   },
 ];
 
-const renderRoutes = (isAuth, routes, RouteComponent) =>
-  routes.map(({ path, component }) => (
-    <RouteComponent
-      exact
-      key={path}
-      isAuth={isAuth}
-      path={path}
-      component={component}
-    />
-  ));
-
 const Routes = ({ isAuth }) => {
-  return (
-    <Router>
-      <Layout>
-        <Switch>
-          {renderRoutes(isAuth, PUBLIC_ROUTES, PublicRoute)}
-          {renderRoutes(isAuth, PRIVATE_ROUTES, PrivateRoute)}
-          <Route exact component={ErrorScreen} />
-        </Switch>
-      </Layout>
-    </Router>
-  );
+  const content = useRoutes(getRoutes(isAuth));
+
+  return content;
 };
 
 export default Routes;

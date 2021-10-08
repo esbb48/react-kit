@@ -8,15 +8,12 @@ export const LayoutRoot = styled('div')(({ theme }) => ({
   width: '100%',
 }));
 
-export const LayoutWrapper = styled('div')(({ theme }) => ({
+export const LayoutWrapper = styled('div')({
   display: 'flex',
   flex: '1 1 auto',
   overflow: 'hidden',
   paddingTop: 64,
-  [theme.breakpoints.up('lg')]: {
-    paddingLeft: 256,
-  },
-}));
+});
 
 export const LayoutContainer = styled('div')({
   display: 'flex',

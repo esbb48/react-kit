@@ -1,8 +1,8 @@
-import { TableCell } from '@material-ui/core';
+import { TableCell as BaseTextCell } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 const TextCell = ({ value }) => {
-  return <TableCell>{value}</TableCell>;
+  return <BaseTextCell>{value}</BaseTextCell>;
 };
 
 TextCell.propTypes = {

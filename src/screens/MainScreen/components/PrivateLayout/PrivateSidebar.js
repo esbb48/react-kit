@@ -13,7 +13,6 @@ import {
 } from '@material-ui/core';
 import { People as UsersIcon } from '@material-ui/icons';
 import NavItem from './NavItem';
-
 const items = [
   {
     href: '/app/user',
@@ -81,10 +80,9 @@ const PrivateSidebar = ({ onMobileClose, openMobile }) => {
       <Box sx={{ flexGrow: 1 }} />
     </Box>
   );
-
   return (
     <>
-      <Hidden lgUp>
+      <Hidden>
         <Drawer
           anchor='left'
           onClose={onMobileClose}
@@ -99,7 +97,7 @@ const PrivateSidebar = ({ onMobileClose, openMobile }) => {
           {content}
         </Drawer>
       </Hidden>
-      <Hidden xlDown>
+      <Hidden lgDown>
         <Drawer
           anchor='left'
           open

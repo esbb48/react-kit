@@ -1,8 +1,8 @@
 import { useRoutes, Navigate } from 'react-router-dom';
-// import Layout from 'components/Layout';
 import ErrorScreen from 'screens/ErrorScreen';
 import HomeScreen from 'screens/HomeScreen';
 import LoginScreen from 'screens/LoginScreen';
+import UserScreen from 'screens/UserScreen';
 import PublicLayout from '../PublicLayout';
 import PrivateLayout from '../PrivateLayout';
 const getRoutes = isAuth => [
@@ -10,7 +10,8 @@ const getRoutes = isAuth => [
     path: 'app',
     element: <PrivateLayout isAuth={isAuth} />,
     children: [
-      { path: 'user', element: <HomeScreen /> },
+      { path: '', element: <HomeScreen /> },
+      { path: 'user', element: <UserScreen /> },
       { path: '*', element: <Navigate to='/404' /> },
     ],
   },
@@ -28,7 +29,6 @@ const getRoutes = isAuth => [
 
 const Routes = ({ isAuth }) => {
   const content = useRoutes(getRoutes(isAuth));
-
   return content;
 };
 

@@ -3,19 +3,25 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core';
 import MainScreen from 'screens/MainScreen';
 import reduxStore from 'redux/configureStore';
 import reportWebVitals from './reportWebVitals';
+import theme from './theme';
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={reduxStore.store}>
-      <BrowserRouter>
-        <PersistGate loading={null} persistor={reduxStore.persistor}>
-          <MainScreen />
-        </PersistGate>
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>,
+  <ThemeProvider theme={theme}>
+    <React.StrictMode>
+      <Provider store={reduxStore.store}>
+        <BrowserRouter>
+          <PersistGate loading={null} persistor={reduxStore.persistor}>
+            <CssBaseline />
+            <MainScreen />
+          </PersistGate>
+        </BrowserRouter>
+      </Provider>
+    </React.StrictMode>
+  </ThemeProvider>,
   document.getElementById('root')
 );
 

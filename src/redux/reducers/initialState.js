@@ -1,6 +1,8 @@
 export const authState = {
   isAuth: false,
-  userName: '',
+  name: '',
+  jobTitle: '',
+  avatar: '',
 };
 
 export const commonState = {};

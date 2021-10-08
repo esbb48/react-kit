@@ -4,7 +4,9 @@ import { authState } from './initialState';
 
 const loginSuccess = (state, payload) => {
   state.isAuth = true;
-  state.userName = payload.userName;
+  state.name = payload.name;
+  state.jobTitle = payload.jobTitle;
+  state.avatar = payload.avatar;
   return state;
 };
 

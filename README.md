@@ -20,9 +20,11 @@ yarn build
 
 ## Use library
 
+- [devias-io/material-kit-react](https://github.com/devias-io/material-kit-react) - UI kit
 - eslint
 - husky
 - immer
 - prettier
 - react-redux
 - redux-saga
+- date-fns
